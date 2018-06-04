@@ -1,0 +1,18 @@
+<Window x:Class="u5_GameOfLife_Couper.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:u5_GameOfLife_Couper"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="900" Width="1000" MinHeight="900" MaxHeight="900" MinWidth="1000" MaxWidth="1000">
+    <Canvas x:Name="canvas">
+        <TextBox Canvas.Left="834" Canvas.Top="53" Width="75" Text="Xcoordinate" x:Name="txt_xCoordinate"></TextBox>
+        <TextBox Canvas.Left="834" Canvas.Top="78" Width="75" Text="Ycoordinate" x:Name="txt_yCoordinate"></TextBox>
+        <Button Height="18" Width="75" Canvas.Left="834" Canvas.Top="101" Content="Add cell" x:Name="btn_addCell" Click="btn_addCell_Click"></Button>
+        <Button Height="18" Width="87" Canvas.Left="834" Canvas.Top="124" Content="Run simulation" x:Name="btn_runSimulation" Click="btn_runSimulation_Click"></Button>
+        <Button Height="18" Width="87" Canvas.Left="834" Canvas.Top="147" Content="Stop Simulation" x:Name="btn_stopSimulation" Click="btn_stopSimulation_Click"></Button>
+        <Canvas x:Name="canvas2" Height="900" Width="1000"></Canvas>
+        <Button x:Name="btn_reset" Height="18" Width="87" Canvas.Left="834" Canvas.Top="170" Content="Reset" Click="btn_reset_Click"></Button>
+    </Canvas>
+</Window>
