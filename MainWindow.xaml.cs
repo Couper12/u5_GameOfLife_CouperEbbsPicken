@@ -25,6 +25,7 @@ namespace u5_GameOfLife_Couper
     /// </summary>
     public partial class MainWindow : Window
     {
+        // variables
         int[,] cellArray = new int[20, 20];
         Rectangle cell;
         int xCoordinate;
@@ -35,6 +36,8 @@ namespace u5_GameOfLife_Couper
         public MainWindow()
         {
             InitializeComponent();
+
+            // adds the grid
             for (int i = 0; i < 21; i++)
             {
                 Rectangle rectangle = new Rectangle();
@@ -45,6 +48,7 @@ namespace u5_GameOfLife_Couper
                 Canvas.SetTop(rectangle, i * 40);
             }
 
+            // adds the grid
             for (int i = 0; i < 21; i++)
             {
                 Rectangle rectangle = new Rectangle();
@@ -54,19 +58,9 @@ namespace u5_GameOfLife_Couper
                 canvas.Children.Add(rectangle);
                 Canvas.SetLeft(rectangle, i * 40);
             }
-
-            string temp = "";
-            for (int x = 0; x < cellArray.GetLength(0); x++)
-            {
-                for (int y = 0; y < cellArray.GetLength(1); y++)
-                {
-                    temp += cellArray[x, y].ToString() + "\t";
-                } 
-                temp += "\n";
-            }
-            //messagebox.show(temp);
         }
 
+        // adds a rectangle to one of the cells and sets it as live
         private void btn_addCell_Click(object sender, RoutedEventArgs e)
         {
             int.TryParse(txt_xCoordinate.Text, out xCoordinate);
@@ -83,18 +77,20 @@ namespace u5_GameOfLife_Couper
             txt_yCoordinate.Text = "Ycoordinate";
         }
 
+        // redraws the canvas
         private void redraw(Canvas c, int[,] cells)
         {
 
-
+            
             int counter = c.Children.Count;
-            ////messagebox.show(counter.ToString());
 
+            // removes all the rectangles
             for (int i = counter - 1; i >= 0; i--)
             {
                 c.Children.RemoveAt(i);
             }
 
+            // redraws rectangles on live cells
             for (int j = 0; j < 20; j++)
             {
                 for (int i = 0; i < 20; i++)
@@ -110,6 +106,7 @@ namespace u5_GameOfLife_Couper
                         Canvas.SetLeft(cell, ((40 * i) - 40) + 5);
                         Canvas.SetTop(cell, ((40 * j) - 40) + 5);
                     }
+                    // ressets array values
                     if (cells[i, j] == 3)
                     {
                         cells[i, j] = 0;
@@ -122,6 +119,7 @@ namespace u5_GameOfLife_Couper
             }
         }
 
+        // starts the timer
         private void btn_runSimulation_Click(object sender, RoutedEventArgs e)
         {
             simulationTimer.Tick += gameTimer_Tick;
@@ -216,7 +214,6 @@ namespace u5_GameOfLife_Couper
                     }
 
                     // check to see if cell becomes live
-                    ////messagebox.show("Live counter is: " + liveCounter.ToString());
                     if (liveCounter == 3
                         && cellArray[i, j] == 0)
                     {
@@ -236,14 +233,17 @@ namespace u5_GameOfLife_Couper
                 }
             }
 
+            // redraws
             redraw(canvas2, cellArray);
         }
 
+        // stops the timer
         private void btn_stopSimulation_Click(object sender, RoutedEventArgs e)
         {
             simulationTimer.Stop();
         }
 
+        //removes all rectangles
         private void btn_reset_Click(object sender, RoutedEventArgs e)
         {
             int counter = canvas2.Children.Count;
